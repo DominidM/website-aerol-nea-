@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWay Airlines</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-plane"></i>
+            Airlines
+        </div>
+        <div class="nav-links">
+            <a href="#flights" class="nav-link" data-lang="flights">Vuelos</a>
+            <a href="#hotels" class="nav-link" data-lang="hotels">Hoteles</a>
+            <a href="#packages" class="nav-link" data-lang="packages">Paquetes</a>
+            <a href="#contact" class="nav-link" data-lang="contact">Contacto</a>
+        </div>
+        <div class="controls">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="lang-toggle" aria-label="Change language">
+                <i class="fas fa-globe"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Actualización de la sección de vuelos -->
+<div id="flights" class="section">
+    <div class="hero">
+        <div class="hero-content">
+            <h1 id="descubre-el-mundo-con-nosotros" data-lang="hero-title">Descubre el mundo con nosotros</h1>
+            <p class="hero-subtitle" data-lang="hero-subtitle">Los mejores destinos y las mejores experiencias te esperan</p>
+            <button class="booking-button">Reservar ahora</button>
+        </div>
+    </div>
+
+    <div class="search-flights">
+        <form id="flightSearchForm" class="search-form">
+            <div class="form-group">
+                <label for="origin" data-lang="from">Desde</label>
+                <select id="origin" name="origin" required>
+                    <option value="">Seleccione origen</option>
+                    <option value="BOG">Bogotá</option>
+                    <option value="MED">Medellín</option>
+                    <option value="CTG">Cartagena</option>
+                    <!-- Más ciudades... -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="destination" data-lang="to">Hasta</label>
+                <select id="destination" name="destination" required>
+                    <option value="">Seleccione destino</option>
+                    <option value="MIA">Miami</option>
+                    <option value="MAD">Madrid</option>
+                    <option value="CUN">Cancún</option>
+                    <!-- Más ciudades... -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="departureDate" data-lang="departure">Salida</label>
+                <input type="date" id="departureDate" name="departureDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="returnDate" data-lang="return">Regreso</label>
+                <input type="date" id="returnDate" name="returnDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="passengers" data-lang="passengers">Pasajeros</label>
+                <select id="passengers" name="passengers" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+
+            <button type="submit" class="search-button" data-lang="search">Buscar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Sección de Hoteles -->
+<div id="hotels" class="section hidden">
+    <h2 data-lang="hotels-title">Hoteles</h2>
+    <div class="hotel-grid">
+        <div class="hotel-card">
+            <img src="https://procolombia.co/sites/default/files/procolombia/news/images/hoteles-01.webp" alt="Hotel 1">
+            <div class="hotel-info">
+                <h3>Grand Hotel & Spa</h3>
+                <p class="location">Miami Beach, FL</p>
+                <div class="rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="reviews">(245 reseñas)</span>
+                </div>
+                <p class="price">Desde $150/noche</p>
+                <button class="booking-button">Reservar</button>
+            </div>
+        </div>
+        <!-- Más tarjetas de hotel... -->
+        <div class="hotel-card">
+            <img src="https://aeronoticias.com.pe/noticiero/wp-content/uploads/2023/07/hilton.jpg" alt="Hotel 2">
+            <div class="hotel-info">
+                <h3>Sunset Resort</h3>
+                <p class="location">Cancún, México</p>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="reviews">(178 reseñas)</span>
+                </div>
+                <p class="price">Desde $180/noche</p>
+                <button class="booking-button">Reservar</button>
+            </div>
+        </div>
+        <!-- Hotel Nro 3-->
+        <div class="hotel-card">
+            <img src="https://media.admagazine.com/photos/65b16818a35d203a72ec2f1c/16:9/w_2560%2Cc_limit/HKTVT_8438978059%2520(1).jpg" alt="Hotel 3">
+            <div class="hotel-info">
+                <h3>Lufus Drop</h3>
+                <p class="location">Sliurp, Islandia</p>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="reviews">(452 reseñas)</span>
+                </div>
+                <p class="price">Desde $250/noche</p>
+                <button class="booking-button">Reservar</button>
+            </div>
+        </div>
+        
+
+        <div class="hotel-card">
+            <img src="https://media.admagazine.com/photos/65b16818a35d203a72ec2f1c/16:9/w_2560%2Cc_limit/HKTVT_8438978059%2520(1).jpg" alt="Hotel 3">
+            <div class="hotel-info">
+                <h3>Lufus Drop</h3>
+                <p class="location">Sliurp, Islandia</p>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="reviews">(452 reseñas)</span>
+                </div>
+                <p class="price">Desde $250/noche</p>
+                <button class="booking-button">Reservar</button>
+            </div>
+        </div>
+
+        <div class="hotel-card">
+            <img src="https://media.admagazine.com/photos/65b16818a35d203a72ec2f1c/16:9/w_2560%2Cc_limit/HKTVT_8438978059%2520(1).jpg" alt="Hotel 3">
+            <div class="hotel-info">
+                <h3>Lufus Drop</h3>
+                <p class="location">Sliurp, Islandia</p>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="reviews">(452 reseñas)</span>
+                </div>
+                <p class="price">Desde $250/noche</p>
+                <button class="booking-button">Reservar</button>
+            </div>
+        </div>
+        <div class="hotel-card">
+            <img src="https://media.admagazine.com/photos/65b16818a35d203a72ec2f1c/16:9/w_2560%2Cc_limit/HKTVT_8438978059%2520(1).jpg" alt="Hotel 3">
+            <div class="hotel-info">
+                <h3>Lufus Drop</h3>
+                <p class="location">Sliurp, Islandia</p>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="reviews">(452 reseñas)</span>
+                </div>
+                <p class="price">Desde $250/noche</p>
+                <button class="booking-button">Reservar</button>
+            </div>
+        </div>
+        <div class="hotel-card">
+            <img src="https://media.admagazine.com/photos/65b16818a35d203a72ec2f1c/16:9/w_2560%2Cc_limit/HKTVT_8438978059%2520(1).jpg" alt="Hotel 3">
+            <div class="hotel-info">
+                <h3>Lufus Drop</h3>
+                <p class="location">Sliurp, Islandia</p>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="reviews">(452 reseñas)</span>
+                </div>
+                <p class="price">Desde $250/noche</p>
+                <button class="booking-button">Reservar</button>
+            </div>
+        </div>
+        <div class="hotel-card">
+            <img src="https://media.admagazine.com/photos/65b16818a35d203a72ec2f1c/16:9/w_2560%2Cc_limit/HKTVT_8438978059%2520(1).jpg" alt="Hotel 3">
+            <div class="hotel-info">
+                <h3>Lufus Drop</h3>
+                <p class="location">Sliurp, Islandia</p>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="reviews">(452 reseñas)</span>
+                </div>
+                <p class="price">Desde $250/noche</p>
+                <button class="booking-button">Reservar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección de Paquetes -->
+<div id="packages" class="section hidden">
+    <h2 data-lang="packages-title">Paquetes Turísticos</h2>
+    <div class="package-grid">
+        <div class="package-card">
+            <img src="https://www.viajesgeotours.com/images/galeria/imagen_id_578661b7055e3.jpg" alt="Paquete 1">
+            <div class="package-info">
+                <h3>Europa Mágica</h3>
+                <p class="duration">10 días / 9 noches</p>
+                <ul class="includes">
+                    <li>✓ Vuelos ida y vuelta</li>
+                    <li>✓ Hoteles 4 estrellas</li>
+                    <li>✓ Desayunos incluidos</li>
+                    <li>✓ Tours guiados</li>
+                </ul>
+                <p class="price">Desde $2,499/persona</p>
+                <button class="booking-button">Ver detalles</button>
+            </div>
+        </div>
+        <!-- Más paquetes... -->
+        <div class="package-card">
+            <img src="https://cdn.unenvironment.org/2024-08/chema-photo-sugRfmGFWUs-unsplash.jpg" alt="Paquete 2">
+            <div class="package-info">
+                <h3>Caribe Total</h3>
+                <p class="duration">7 días / 6 noches</p>
+                <ul class="includes">
+                    <li>✓ Vuelos ida y vuelta</li>
+                    <li>✓ Resort todo incluido</li>
+                    <li>✓ Traslados</li>
+                    <li>✓ Actividades acuáticas</li>
+                </ul>
+                <p class="price">Desde $1,899/persona</p>
+                <button class="booking-button">Ver detalles</button>
+            </div>
+        </div>
+
+        <div class="package-card">
+            <img src="https://www.viajesgeotours.com/images/galeria/imagen_id_578661b7055e3.jpg" alt="Paquete 1">
+            <div class="package-info">
+                <h3>Europa Mágica</h3>
+                <p class="duration">10 días / 9 noches</p>
+                <ul class="includes">
+                    <li>✓ Vuelos ida y vuelta</li>
+                    <li>✓ Hoteles 4 estrellas</li>
+                    <li>✓ Desayunos incluidos</li>
+                    <li>✓ Tours guiados</li>
+                </ul>
+                <p class="price">Desde $2,499/persona</p>
+                <button class="booking-button">Ver detalles</button>
+            </div>
+        </div>
+        <!-- Más paquetes... -->
+        <div class="package-card">
+            <img src="https://cdn.unenvironment.org/2024-08/chema-photo-sugRfmGFWUs-unsplash.jpg" alt="Paquete 2">
+            <div class="package-info">
+                <h3>Caribe Total</h3>
+                <p class="duration">7 días / 6 noches</p>
+                <ul class="includes">
+                    <li>✓ Vuelos ida y vuelta</li>
+                    <li>✓ Resort todo incluido</li>
+                    <li>✓ Traslados</li>
+                    <li>✓ Actividades acuáticas</li>
+                </ul>
+                <p class="price">Desde $1,899/persona</p>
+                <button class="booking-button">Ver detalles</button>
+            </div>
+        </div>
+
+
+        <div class="package-card">
+            <img src="https://www.viajesgeotours.com/images/galeria/imagen_id_578661b7055e3.jpg" alt="Paquete 1">
+            <div class="package-info">
+                <h3>Europa Mágica</h3>
+                <p class="duration">10 días / 9 noches</p>
+                <ul class="includes">
+                    <li>✓ Vuelos ida y vuelta</li>
+                    <li>✓ Hoteles 4 estrellas</li>
+                    <li>✓ Desayunos incluidos</li>
+                    <li>✓ Tours guiados</li>
+                </ul>
+                <p class="price">Desde $2,499/persona</p>
+                <button class="booking-button">Ver detalles</button>
+            </div>
+        </div>
+        <!-- Más paquetes... -->
+        <div class="package-card">
+            <img src="https://cdn.unenvironment.org/2024-08/chema-photo-sugRfmGFWUs-unsplash.jpg" alt="Paquete 2">
+            <div class="package-info">
+                <h3>Caribe Total</h3>
+                <p class="duration">7 días / 6 noches</p>
+                <ul class="includes">
+                    <li>✓ Vuelos ida y vuelta</li>
+                    <li>✓ Resort todo incluido</li>
+                    <li>✓ Traslados</li>
+                    <li>✓ Actividades acuáticas</li>
+                </ul>
+                <p class="price">Desde $1,899/persona</p>
+                <button class="booking-button">Ver detalles</button>
+            </div>
+        </div>
+
+
+        <div class="package-card">
+            <img src="https://www.viajesgeotours.com/images/galeria/imagen_id_578661b7055e3.jpg" alt="Paquete 1">
+            <div class="package-info">
+                <h3>Europa Mágica</h3>
+                <p class="duration">10 días / 9 noches</p>
+                <ul class="includes">
+                    <li>✓ Vuelos ida y vuelta</li>
+                    <li>✓ Hoteles 4 estrellas</li>
+                    <li>✓ Desayunos incluidos</li>
+                    <li>✓ Tours guiados</li>
+                </ul>
+                <p class="price">Desde $2,499/persona</p>
+                <button class="booking-button">Ver detalles</button>
+            </div>
+        </div>
+        <!-- Más paquetes... -->
+        <div class="package-card">
+            <img src="https://cdn.unenvironment.org/2024-08/chema-photo-sugRfmGFWUs-unsplash.jpg" alt="Paquete 2">
+            <div class="package-info">
+                <h3>Caribe Total</h3>
+                <p class="duration">7 días / 6 noches</p>
+                <ul class="includes">
+                    <li>✓ Vuelos ida y vuelta</li>
+                    <li>✓ Resort todo incluido</li>
+                    <li>✓ Traslados</li>
+                    <li>✓ Actividades acuáticas</li>
+                </ul>
+                <p class="price">Desde $1,899/persona</p>
+                <button class="booking-button">Ver detalles</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección de Contacto -->
+<div id="contact" class="section hidden">
+    <h2 data-lang="contact-title">Contáctanos</h2>
+    <div class="contact-container">
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name" data-lang="name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-lang="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" data-lang="message">Mensaje</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button" data-lang="send">Enviar</button>
+            </form>
+        </div>
+        <div class="contact-info">
+            <h3>Información de Contacto</h3>
+            <p>📍 Calle Principal #123, Ciudad</p>
+            <p>📞 +1 234 567 890</p>
+            <p>✉️ info@skyway.com</p>
+        </div>
+    </main>
+
+    <div class="chatbot">
+        <button class="chat-toggle">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chat-window">
+            <div class="chat-header">
+                <h3 data-lang="chat-title">Asistente Virtual</h3>
+                <button class="chat-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages">
+                <div class="message bot">
+                    <p data-lang="chat-welcome">¡Hola! ¿En qué puedo ayudarte hoy?</p>
+                </div>
+            </div>
+            <form class="chat-input" id="chatForm">
+                <input type="text" id="chatMessage" placeholder="Escribe tu mensaje..." required>
+                <button type="submit" class="btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="main.js"></script>
+</body>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>SkyWay Airlines</h4>
+            <p>Tu compañero de viaje de confianza</p>
+        </div>
+        <div class="footer-section">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+                <li><a href="#flights">Vuelos</a></li>
+                <li><a href="#hotels">Hoteles</a></li>
+                <li><a href="#packages">Paquetes</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Síguenos</h4>
+            <div class="social-links">
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 SkyWay Airlines. Todos los derechos reservados.</p>
+    </div>
+</footer>
+</html>
