@@ -1,0 +1,146 @@
+/* === Estilos Generales === */
+body {
+    background-color: #055286; /* Color azul cielo */
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evita el scroll */
+    position: relative; /* Necesario para la posición absoluta de los aviones */
+}
+
+/* === Animación de los Aviones === */
+.airplane {
+    position: absolute;
+    width: 80px;
+    opacity: 0.8;
+    animation: fly-across 10s linear infinite; /* Animación de vuelo continua */
+    filter: invert(1) grayscale(1) brightness(10); /* Efecto de filtro para los aviones */
+}
+
+/* Diferentes posiciones y retrasos para los aviones */
+.airplane:nth-child(1) {
+    top: 10%;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.airplane:nth-child(2) {
+    top: 30%;
+    left: -150px;
+    animation-delay: 2s;
+}
+
+.airplane:nth-child(3) {
+    top: 60%;
+    left: -200px;
+    animation-delay: 4s;
+}
+
+/* Animación de vuelo de los aviones */
+@keyframes fly-across {
+    0% {
+        transform: translateX(0) rotate(0deg); /* Empieza en el borde izquierdo */
+    }
+    100% {
+        transform: translateX(120vw) rotate(10deg); /* Termina fuera de la pantalla a la derecha */
+    }
+}
+
+/* === Estilos del Contenedor de Login === */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con algo de transparencia */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    padding: 2rem; /* Espaciado interno */
+    width: 100%;
+    max-width: 400px; /* Limita el tamaño máximo del contenedor */
+    position: relative;
+    z-index: 10; /* Asegura que el contenedor esté por encima de los aviones */
+}
+
+/* === Estilos del Avatar === */
+.avatar-container {
+    text-align: center;
+    margin-bottom: 1rem; /* Espaciado debajo del avatar */
+}
+
+.avatar-icon {
+    width: 80px;
+    height: 80px;
+    animation: bounce-once 2s ease; /* Animación de rebote */
+}
+
+/* Animación de rebote para el avatar */
+@keyframes bounce-once {
+    0%, 100% {
+        transform: translateY(0); /* Empieza y termina en su posición original */
+    }
+    50% {
+        transform: translateY(-20px); /* Rebote hacia arriba */
+    }
+}
+
+/* === Estilos del Header del Login === */
+.login-header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333; /* Color de texto oscuro */
+    text-align: center;
+}
+
+/* === Enlace de "Olvidaste tu Contraseña" === */
+.forgot-password a {
+    text-decoration: none;
+    color: #007bff; /* Color azul del enlace */
+    font-size: 0.9rem;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline; /* Subraya al pasar el mouse */
+}
+
+/* === Estilos de Errores === */
+.error {
+    border: 2px solid red !important; /* Borde rojo en campos con error */
+}
+
+/* === Toast de Éxito === */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    animation: toast-in 0.3s forwards, toast-out 0.3s 2.7s forwards;
+}
+
+@keyframes toast-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes toast-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+}
+
+.hide {
+    display: none;
+}

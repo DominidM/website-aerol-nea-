@@ -1,0 +1,596 @@
+:root {
+    --primary-color: #1e88e5;
+    --secondary-color: #424242;
+    --background-color: #f5f6fa;
+    --card-color: #ffffff;
+    --text-color: #333333;
+    --text-muted: #777777;
+    --border-radius: 12px;
+    --shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    --highlight-color: #147ace;
+    --hover-bg-color: rgba(255, 255, 255, 0.1);
+    --hover-effect-color: rgba(30, 136, 229, 0.1);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Dashboard Layout */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    font-size: 0.95rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background: var(--secondary-color);
+    color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100%;
+    z-index: 10;
+    transition: width 0.3s ease, padding 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+    padding: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+.logo i {
+    color: var(--primary-color);
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar nav a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background-color: var(--highlight-color);
+    transform: translateX(10px);
+}
+
+.sidebar nav a i {
+    width: 22px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 2rem 2rem 2rem 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: padding-left 0.3s ease, padding-right 0.3s ease;
+}
+
+.main-content.collapsed {
+    padding-left: 80px;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem;
+    background: var(--card-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    background: var(--background-color);
+    padding: 0.8rem 1.2rem;
+    border-radius: 20px;
+    gap: 0.8rem;
+}
+
+.search input {
+    border: none;
+    background: none;
+    outline: none;
+    width: 200px;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: 25px;
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+}
+
+.user-profile img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+/* Quick Actions */
+.quick-actions {
+    background: var(--card-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    border: none;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s ease-in-out;
+}
+
+.action-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.action-btn i {
+    font-size: 1.7rem;
+    color: var(--primary-color);
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.8rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: var(--card-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.view-all {
+    color: var(--primary-color);
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Activities List */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s;
+}
+
+.activity-item:hover {
+    background-color: var(--hover-effect-color);
+}
+
+.activity-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+}
+
+.stat-item i {
+    font-size: 1.7rem;
+    color: var(--primary-color);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        width: 80px;
+        padding: 1.5rem;
+    }
+
+    .sidebar .logo span,
+    .sidebar nav a span {
+        display: none;
+    }
+
+    .sidebar nav a {
+        justify-content: center;
+    }
+
+    .main-content {
+        margin-left: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .top-bar {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .search input {
+        width: 180px;
+    }
+
+    .user-profile img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 2rem;
+    }
+
+    .top-bar {
+        flex-direction: column;
+    }
+
+    .top-bar-right {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search {
+        width: 100%;
+    }
+}
+
+/* Estilo para el contenedor de formularios */
+.form-container {
+    padding: 20px;
+    background-color: var(--card-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+input, select, textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Efecto cuando el campo tiene focus */
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Estilo del botón dentro del formulario */
+button {
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-4px);
+}
+
+/* Mejoras para los botones de acción del formulario */
+.action-btn {
+    display: inline-block;
+    padding: 12px 18px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
+}
+
+.action-btn:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-4px);
+}
+
+.action-btn span {
+    margin-left: 8px;
+}
+
+/* Campos de texto más estilizados */
+input, select, textarea {
+    font-size: 1rem;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px var(--primary-color);
+}
+
+/* Para inputs y selects con label */
+label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Espaciado entre los elementos del formulario */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Cuando un formulario tiene la clase "hidden" se oculta */
+form.hidden {
+    display: none;
+}
+
+/* Estilo de los botones de acción */
+.action-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px; /* Añadimos más espacio a los lados para mayor contraste */
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 12px; /* Bordes redondeados */
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Animación suave */
+    text-align: center;
+    font-size: 1rem;
+}
+
+.action-btn:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-4px); /* Mover el botón ligeramente hacia arriba */
+    box-shadow: var(--shadow); /* Agregar sombra en hover */
+}
+
+.action-btn span {
+    margin-left: 8px;
+}
+.action-btn i {
+    font-size: 1.7rem;
+    color: white;
+}
+.hidden {
+    display: none;
+}
+.action-btn:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(30, 136, 229, 0.7); /* Resaltar al enfocar */
+}
+.form-button.active {
+    /* Define el estilo de botón activo, por ejemplo, un cambio de color */
+    background-color: #f0f0f0; /* Ejemplo */
+    border: 2px solid #ddd;
+}
+
+
+#maps-section h2 {
+    text-align: center;
+}
+
+/* Para los selects y inputs en formularios */
+input, select, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #147ace;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #147ace;
+}
+
+
+
+
+
+
+
+/* Estilo para el dropdown */
+.user-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+#dropdown-menu a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+}
+
+#dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}

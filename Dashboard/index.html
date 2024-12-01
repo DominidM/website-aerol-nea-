@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Administrativo</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+
+        
+
+    </head>
+    
+    <body>
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <aside class="sidebar" aria-label="Sidebar de Navegación">
+                <div class="logo">
+                    <span class="material-icons" style="font-size: 30px;">flight</span>
+                    <span>AirOps</span>
+                </div>  
+                <nav>
+                    
+                        <a href="#dashboard-section" class="nav-link" onclick="showSection('dashboard')">
+                            <span class="material-icons">home</span> Dashboard
+                        </a>
+                        <a href="#inspections-section" class="nav-link active" onclick="showSection('inspections')">
+                            <span class="material-icons">assignment</span> Inspecciones
+                        </a>
+                        <a href="#maps-section" class="nav-link active" onclick="showSection('maps')">
+                            <span class="material-icons">map</span> Mapas
+                        </a>
+                        <a href="#incidents-section" class="nav-link active" onclick="showSection('incidents')">
+                            <span class="material-icons">warning</span> Incidentes
+                        </a>
+                        <a href="#settings-section" class="nav-link active" onclick="showSection('settings')">
+                            <span class="material-icons">settings</span> Configuración
+                        </a>
+                        <a href="#users-section" class="nav-link active" onclick="showSection('users')">
+                            <span class="material-icons">group</span> Gestión de Usuarios
+                        </a>
+                        <a href="#reports-section" class="nav-link active" onclick="showSection('reports')">
+                            <span class="material-icons">show_chart</span> Informes
+                        </a>
+                    
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Top Bar -->
+                <header class="top-bar">
+                    <div class="breadcrumb">
+                        Home / Dashboard
+                    </div>
+                    <div class="top-bar-right">
+                        <button class="refresh-btn" aria-label="Actualizar Dashboard">
+                            <span class="material-icons">sync</span> Actualizar
+                        </button>
+                        <div class="search">
+                            <span class="material-icons">search</span>
+                            <input type="text" placeholder="Buscar..." aria-label="Buscar en el Dashboard">
+                        </div>
+                        <div class="user-profile" id="user-profile">
+                            <span class="material-icons">notifications</span>
+                            <span class="notification-badge">3</span>
+                            <img src="https://via.placeholder.com/150" alt="Perfil de Usuario" id="profile-img">
+                            <div class="dropdown-menu" id="dropdown-menu">
+                                <a href="#" id="account-link">Mi Cuenta</a>
+                                <a href="#" id="logout-link">Cerrar Sesión</a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Dashboard Content -->
+                <div class="dashboard-content">
+                    <!-- Sección Dashboard -->
+                    <div class="section" id="dashboard-section">
+                        <h2>Dashboard</h2>
+                        <p>Bienvenido al Dashboard. Aquí puedes ver el análisis de los datos importantes.</p>
+
+                        <!-- Grid de Acciones y Gráficos -->
+                        <div class="actions-grid">
+                            <!-- Gráfico 1: Gráfico de Barras -->
+                            <div class="action-btn">
+                                <h3>Gráfico de Análisis de Incidentes</h3>
+                                <canvas id="incident-chart" class="chart-canvas"></canvas>
+                            </div>
+
+                            <!-- Gráfico 2: Gráfico Circular -->
+                            <div class="action-btn">
+                                <h3>Distribución de Usuarios</h3>
+                                <canvas id="user-distribution-chart" class="chart-canvas"></canvas>
+                            </div>
+
+                            <!-- Gráfico 3: Gráfico de Líneas -->
+                            <div class="action-btn">
+                                <h3>Desempeño a lo largo del Tiempo</h3>
+                                <canvas id="performance-chart" class="chart-canvas"></canvas>
+                            </div>
+
+                            <!-- Gráfico 4: Gráfico de Pastel -->
+                            <div class="action-btn">
+                                <h3>Acciones del Sistema</h3>
+                                <canvas id="system-actions-chart" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Métricas clave -->
+                        <div class="key-metrics">
+                            <h3>Métricas Clave</h3>
+                            <!-- Tarjetas de métricas -->
+                        </div>
+
+                        <!-- Últimos Reportes -->
+                        <div class="recent-reports">
+                            <!-- Tabla de reportes -->
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <!-- Agrega aquí el script de los gráficos -->
+        
+
+                <!-- Sección Inspecciones -->
+                <div class="section" id="inspections-section">
+                    <h2>Inspecciones</h2>
+                    <p>Aquí puedes ver las inspecciones realizadas.</p>
+                    <div class="actions-grid">
+                        <button class="action-btn" onclick="showForm('view-inspection-form')">
+                            <span class="material-icons">search</span><span>Ver Inspección</span>
+                        </button>
+                        <button class="action-btn" onclick="showForm('add-inspection-form')">
+                            <span class="material-icons">add_circle</span><span>Agregar Inspección</span>
+                        </button>
+                        <button class="action-btn" onclick="showForm('edit-inspection-form')">
+                            <span class="material-icons">edit</span><span>Editar Inspección</span>
+                        </button>
+                        <button class="action-btn" onclick="showForm('delete-inspection-form')">
+                            <span class="material-icons">delete</span><span>Eliminar Inspección</span>
+                        </button>
+                    </div>
+
+                    <!-- Contenedor para formularios -->
+                    <div id="form-container">
+                        <!-- Formulario para Ver Inspección -->
+                        <form id="view-inspection-form" class="hidden">
+                            <h3>Ver Inspección</h3>
+                            <label for="inspection-id">ID de Inspección:</label>
+                            <input type="text" id="inspection-id" placeholder="Ingresa el ID de la inspección">
+                            <button type="submit">Buscar</button>
+                        </form>
+
+                        <!-- Formulario para Agregar Inspección -->
+                        <form id="add-inspection-form" class="hidden">
+                            <h3>Agregar Inspección</h3>
+                            <label for="inspection-name">Nombre:</label>
+                            <input type="text" id="inspection-name" placeholder="Nombre de la inspección">
+                            <label for="inspection-date">Fecha:</label>
+                            <input type="date" id="inspection-date">
+                            <button type="submit">Agregar</button>
+                        </form>
+
+                        <!-- Formulario para Editar Inspección -->
+                        <form id="edit-inspection-form" class="hidden">
+                            <h3>Editar Inspección</h3>
+                            <label for="edit-inspection-id">ID de Inspección:</label>
+                            <input type="text" id="edit-inspection-id" placeholder="Ingresa el ID de la inspección">
+                            <label for="edit-inspection-name">Nuevo Nombre:</label>
+                            <input type="text" id="edit-inspection-name" placeholder="Nuevo nombre">
+                            <button type="submit">Editar</button>
+                        </form>
+
+                        <!-- Formulario para Eliminar Inspección -->
+                        <form id="delete-inspection-form" class="hidden">
+                            <h3>Eliminar Inspección</h3>
+                            <label for="delete-inspection-id">ID de Inspección:</label>
+                            <input type="text" id="delete-inspection-id" placeholder="Ingresa el ID de la inspección">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sección Mapas -->
+                <div class="section" id="maps-section">
+                    <h2>Mapas</h2>
+                    <p>Visualiza los mapas aquí.</p>
+                    <div class="actions-grid">
+                        <button class="action-btn" onclick="showForm('view-map-form')">
+                            <span class="material-icons">location_on</span><span>Ver Mapa</span>
+                        </button>
+                        <button class="action-btn" onclick="showForm('add-map-form')">
+                            <span class="material-icons">add_circle</span><span>Agregar Mapa</span>
+                        </button>
+                        <button class="action-btn" onclick="showForm('edit-map-form')">
+                            <span class="material-icons">edit</span><span>Editar Mapa</span>
+                        </button>
+                        <button class="action-btn" onclick="showForm('delete-map-form')">
+                            <span class="material-icons">delete</span><span>Eliminar Mapa</span>
+                        </button>
+                    </div>
+
+                    <div id="form-container">
+                        <!-- Formulario para Ver Mapa -->
+                        <form id="view-map-form" class="hidden">
+                            <h3>Ver Mapa</h3>
+                            <label for="view-map-select">Seleccionar Mapa:</label>
+                            <select id="view-map-select">
+                                <option value="map1">Mapa 1</option>
+                                <option value="map2">Mapa 2</option>
+                            </select>
+                            <div class="map-display">
+                                <p>Vista previa del mapa seleccionado. Aquí puedes integrar un visor de mapas como Google Maps o OpenStreetMap.</p>
+                            </div>
+                        </form>
+
+                        <!-- Formulario para Agregar Mapa -->
+                        <form id="add-map-form" class="hidden">
+                            <h3>Agregar Mapa</h3>
+                            <label for="add-map-name">Nombre del Mapa:</label>
+                            <input type="text" id="add-map-name" placeholder="Ejemplo: Zona Norte" required>
+                            <label for="add-map-coordinates">Coordenadas:</label>
+                            <input type="text" id="add-map-coordinates" placeholder="Ejemplo: -12.0464, -77.0428" required>
+                            <button type="submit">Agregar</button>
+                        </form>
+
+                        <!-- Formulario para Editar Mapa -->
+                        <form id="edit-map-form" class="hidden">
+                            <h3>Editar Mapa</h3>
+                            <label for="edit-map-id">ID del Mapa:</label>
+                            <input type="text" id="edit-map-id" placeholder="ID del mapa a editar">
+                            <label for="edit-map-name">Nuevo Nombre:</label>
+                            <input type="text" id="edit-map-name" placeholder="Nuevo nombre del mapa">
+                            <button type="submit">Editar</button>
+                        </form>
+
+                        <!-- Formulario para Eliminar Mapa -->
+                        <form id="delete-map-form" class="hidden">
+                            <h3>Eliminar Mapa</h3>
+                            <label for="delete-map-id">ID del Mapa:</label>
+                            <input type="text" id="delete-map-id" placeholder="ID del mapa a eliminar">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Sección Incidentes -->
+<div class="section" id="incidents-section">
+    <h2>Incidentes</h2>
+    <p>Aquí puedes ver los incidentes reportados.</p>
+    <div class="actions-grid">
+        <button class="action-btn" onclick="showForm('view-incident-form')">
+            <span class="material-icons">notifications</span><span>Ver Incidente</span>
+        </button>
+        <button class="action-btn" onclick="showForm('report-incident-form')">
+            <span class="material-icons">add_circle</span><span>Reportar Incidente</span>
+        </button>
+        <button class="action-btn" onclick="showForm('edit-incident-form')">
+            <span class="material-icons">edit</span><span>Editar Incidente</span>
+        </button>
+        <button class="action-btn" onclick="showForm('delete-incident-form')">
+            <span class="material-icons">delete</span><span>Eliminar Incidente</span>
+        </button>
+    </div>
+
+    <!-- Contenedor para formularios -->
+    <div id="form-container">
+        <!-- Formulario para Ver Incidente -->
+        <form id="view-incident-form" class="hidden">
+            <h3>Ver Incidente</h3>
+            <label for="incident-id">ID de Incidente:</label>
+            <input type="text" id="incident-id" placeholder="Ingresa el ID del incidente">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- Formulario para Reportar Incidente -->
+        <form id="report-incident-form" class="hidden">
+            <h3>Reportar Incidente</h3>
+            <label for="incident-description">Descripción:</label>
+            <textarea id="incident-description" placeholder="Describe el incidente"></textarea>
+            <label for="incident-date">Fecha:</label>
+            <input type="date" id="incident-date">
+            <button type="submit">Reportar</button>
+        </form>
+
+        <!-- Formulario para Editar Incidente -->
+        <form id="edit-incident-form" class="hidden">
+            <h3>Editar Incidente</h3>
+            <label for="edit-incident-id">ID de Incidente:</label>
+            <input type="text" id="edit-incident-id" placeholder="Ingresa el ID del incidente">
+            <label for="edit-incident-description">Nueva Descripción:</label>
+            <textarea id="edit-incident-description" placeholder="Nueva descripción"></textarea>
+            <button type="submit">Editar</button>
+        </form>
+
+        <!-- Formulario para Eliminar Incidente -->
+        <form id="delete-incident-form" class="hidden">
+            <h3>Eliminar Incidente</h3>
+            <label for="delete-incident-id">ID de Incidente:</label>
+            <input type="text" id="delete-incident-id" placeholder="Ingresa el ID del incidente">
+            <button type="submit">Eliminar</button>
+        </form>
+    </div>
+</div>
+
+
+                <!-- Sección Configuración -->
+<div class="section" id="settings-section">
+    <h2>Configuración</h2>
+    <p>Ajusta la configuración de tu cuenta y sistema.</p>
+    <div class="actions-grid">
+        <button class="action-btn" onclick="showForm('account-settings-form')">
+            <span class="material-icons">account_circle</span><span>Ajustes de Cuenta</span>
+        </button>
+        <button class="action-btn" onclick="showForm('system-settings-form')">
+            <span class="material-icons">settings</span><span>Ajustes del Sistema</span>
+        </button>
+        <button class="action-btn" onclick="showForm('language-settings-form')">
+            <span class="material-icons">language</span><span>Idioma</span>
+        </button>
+        <button class="action-btn" onclick="showForm('security-settings-form')">
+            <span class="material-icons">lock</span><span>Seguridad</span>
+        </button>
+    </div>
+
+    <!-- Contenedor para formularios -->
+    <div id="form-container">
+        <!-- Formulario para Ajustes de Cuenta -->
+        <form id="account-settings-form" class="hidden">
+            <h3>Ajustes de Cuenta</h3>
+            <label for="account-email">Correo Electrónico:</label>
+            <input type="email" id="account-email" placeholder="Ingresa tu correo">
+            <label for="account-password">Contraseña:</label>
+            <input type="password" id="account-password" placeholder="Ingresa tu nueva contraseña">
+            <button type="submit">Guardar Cambios</button>
+        </form>
+
+        <!-- Formulario para Ajustes del Sistema -->
+        <form id="system-settings-form" class="hidden">
+            <h3>Ajustes del Sistema</h3>
+            <label for="system-theme">Tema del Sistema:</label>
+            <select id="system-theme">
+                <option value="light">Claro</option>
+                <option value="dark">Oscuro</option>
+            </select>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+
+        <!-- Formulario para Idioma -->
+        <form id="language-settings-form" class="hidden">
+            <h3>Idioma</h3>
+            <label for="language-select">Selecciona el Idioma:</label>
+            <select id="language-select">
+                <option value="es">Español</option>
+                <option value="en">Inglés</option>
+            </select>
+            <button type="submit">Cambiar Idioma</button>
+        </form>
+
+        <!-- Formulario para Seguridad -->
+        <form id="security-settings-form" class="hidden">
+            <h3>Seguridad</h3>
+            <label for="security-2fa">Autenticación en Dos Pasos:</label>
+            <input type="checkbox" id="security-2fa">
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- Sección Gestión de Usuarios -->
+<div class="section" id="users-section">
+    <h2>Gestión de Usuarios</h2>
+    <p>Aquí puedes gestionar los usuarios de la plataforma.</p>
+    <div class="actions-grid">
+        <button class="action-btn" onclick="showForm('view-users-form')">
+            <span class="material-icons">group</span><span>Ver Usuarios</span>
+        </button>
+        <button class="action-btn" onclick="showForm('add-user-form')">
+            <span class="material-icons">person_add</span><span>Agregar Usuario</span>
+        </button>
+        <button class="action-btn" onclick="showForm('edit-user-form')">
+            <span class="material-icons">edit</span><span>Editar Usuario</span>
+        </button>
+        <button class="action-btn" onclick="showForm('delete-user-form')">
+            <span class="material-icons">delete</span><span>Eliminar Usuario</span>
+        </button>
+    </div>
+
+    <!-- Contenedor para formularios -->
+    <div id="form-container">
+        <!-- Formulario para Ver Usuarios -->
+        <form id="view-users-form" class="hidden">
+            <h3>Ver Usuarios</h3>
+            <label for="user-id">ID de Usuario:</label>
+            <input type="text" id="user-id" placeholder="Ingresa el ID del usuario">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- Formulario para Agregar Usuario -->
+        <form id="add-user-form" class="hidden">
+            <h3>Agregar Usuario</h3>
+            <label for="user-name">Nombre:</label>
+            <input type="text" id="user-name" placeholder="Nombre del usuario">
+            <label for="user-email">Correo Electrónico:</label>
+            <input type="email" id="user-email" placeholder="Correo del usuario">
+            <button type="submit">Agregar</button>
+        </form>
+
+        <!-- Formulario para Editar Usuario -->
+        <form id="edit-user-form" class="hidden">
+            <h3>Editar Usuario</h3>
+            <label for="edit-user-id">ID de Usuario:</label>
+            <input type="text" id="edit-user-id" placeholder="Ingresa el ID del usuario">
+            <label for="edit-user-name">Nuevo Nombre:</label>
+            <input type="text" id="edit-user-name" placeholder="Nuevo nombre">
+            <label for="edit-user-email">Nuevo Correo:</label>
+            <input type="email" id="edit-user-email" placeholder="Nuevo correo">
+            <button type="submit">Editar</button>
+        </form>
+
+        <!-- Formulario para Eliminar Usuario -->
+        <form id="delete-user-form" class="hidden">
+            <h3>Eliminar Usuario</h3>
+            <label for="delete-user-id">ID de Usuario:</label>
+            <input type="text" id="delete-user-id" placeholder="Ingresa el ID del usuario">
+            <button type="submit">Eliminar</button>
+        </form>
+    </div>
+</div>
+
+
+
+                <!-- Sección Informes -->
+<div class="section" id="reports-section">
+    <h2>Informes</h2>
+    <p>Aquí puedes generar y ver los informes del sistema.</p>
+    <div class="actions-grid">
+        <button class="action-btn" onclick="showForm('generate-report-form')">
+            <span class="material-icons">insert_drive_file</span><span>Generar Informe</span>
+        </button>
+        <button class="action-btn" onclick="showForm('view-report-form')">
+            <span class="material-icons">visibility</span><span>Ver Informe</span>
+        </button>
+        <button class="action-btn" onclick="showForm('download-report-form')">
+            <span class="material-icons">download</span><span>Descargar Informe</span>
+        </button>
+    </div>
+
+    <!-- Contenedor para formularios -->
+    <div id="form-container">
+        <!-- Formulario para Generar Informe -->
+        <form id="generate-report-form" class="hidden">
+            <h3>Generar Informe</h3>
+            <label for="report-type">Tipo de Informe:</label>
+            <select id="report-type">
+                <option value="incident">Incidentes</option>
+                <option value="user">Usuarios</option>
+                <option value="settings">Configuración</option>
+            </select>
+            <label for="report-date">Fecha:</label>
+            <input type="date" id="report-date">
+            <button type="submit">Generar</button>
+        </form>
+
+        <!-- Formulario para Ver Informe -->
+        <form id="view-report-form" class="hidden">
+            <h3>Ver Informe</h3>
+            <label for="report-id">ID de Informe:</label>
+            <input type="text" id="report-id" placeholder="Ingresa el ID del informe">
+            <button type="submit">Ver</button>
+        </form>
+
+        <!-- Formulario para Descargar Informe -->
+        <form id="download-report-form" class="hidden">
+            <h3>Descargar Informe</h3>
+            <label for="download-report-id">ID de Informe:</label>
+            <input type="text" id="download-report-id" placeholder="Ingresa el ID del informe">
+            <button type="submit">Descargar</button>
+        </form>
+    </div>
+</div>
+
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Gráfico de Incidentes
+        const ctx1 = document.getElementById('incident-chart').getContext('2d');
+        const incidentChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+                datasets: [{
+                    label: 'Incidentes Reportados',
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Gráfico de Distribución de Usuarios
+        const ctx2 = document.getElementById('user-distribution-chart').getContext('2d');
+        const userDistributionChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Activos', 'Inactivos'],
+                datasets: [{
+                    data: [300, 100],
+                    backgroundColor: ['#36A2EB', '#FF6384']
+                }]
+            }
+        });
+
+        // Gráfico de Desempeño
+        const ctx3 = document.getElementById('performance-chart').getContext('2d');
+        const performanceChart = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+                datasets: [{
+                    label: 'Desempeño',
+                    data: [1, 2, 3, 4, 5],
+                    fill: false,
+                    borderColor: '#4BC0C0',
+                    tension: 0.1
+                }]
+            }
+        });
+    </script>
+    <script>
+        
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section) => {
+                section.style.display = 'none';
+            });
+
+            // Mostrar la sección seleccionada
+            const activeSection = document.getElementById(`${sectionId}-section`);
+            activeSection.style.display = 'block';
+
+            // Cambiar el estado activo de los enlaces
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach((link) => {
+                link.classList.remove('active');
+            });
+
+            const activeLink = document.querySelector(`.nav-link[href="#${sectionId}-section"]`);
+            activeLink.classList.add('active');
+        }
+
+        // Mostrar la primera sección (Dashboard) por defecto
+        showSection('dashboard');
+    </script>
+    
+
+</body>
+</html>
